@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>CarParkBook</title>
+  <title>RitPark</title>
 
 
 
@@ -26,8 +26,8 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-  <script type="module" src="server/auth.js"></script>
-  <script type="module" src="server/firebase_init.js"></script>
+  <script type="module" src="./server/auth.js"></script>
+
 </head>
 
 <body class="sub_page">
@@ -77,23 +77,19 @@
   <section class="feature_section layout_padding">
     <div class="container">
       <div class="find-section bg-white p-5">
-        <h3 class="text-muted">Login to Continue</h3>
-        <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <form id="adminform">
-              <div id="toast">
-                
-              </div>
+        <h3 class="text-muted">Admin Login Page</h3>
+        <div class="  mx-auto">
+          <div class="col-8 col-lg-6 mx-auto">
+            <form id="admin_form">
               <div class=" form">
-                <div class="col">
-                  <label for="username" >Username</label>
-                  <input type="email" required class="form-control" placeholder="Your Username" id="username">
+                <div class="col-sm-12">
+                  <label for="username">Username</label>
+                  <input type="email" id="username" class="form-control" placeholder="Your Username">
                 </div>
       
                 <div class="col">
                   <label for="password">Password</label>
-                  <input type="password" required class="form-control" placeholder="Your password" id="password">
+                  <input type="password" id="password" class="form-control" placeholder="Your password">
                 </div>
                 <div class="col">
                   <div class="mt-5 d-flex justify-content-center btn-container contact_form-container">
@@ -111,7 +107,6 @@
               </div>
             </form>
           </div>
-          <div class="col-4"></div>
         </div>
       </div>
     </div>
@@ -127,11 +122,17 @@
         <div class="row">
           <div class="col-lg-4">
             <h6>
-              CarParkBook
+              RitPark
             </h6>
-            <p>
-              Your one platform for seamless car parking <br>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt culpa, ad doloremque quis, facere, omnis repellat soluta fugiat architecto eveniet.
+            <p style="text-align: justify;">
+              At RitPark, we pride ourselves on offering an array of comprehensive services tailored 
+to the needs of retail stores. One of our primary offerings is the provision of free 
+parking space, strategically allocated to accommodate the influx of shoppers visiting 
+the retail outlets. This complimentary service not only enhances the shopping experience 
+for customers but also contributes to increased foot traffic and sales for the stores.
+ With ample parking available, customers can enjoy hassle-free
+ access to their favorite retail destinations, promoting convenience and satisfaction.
+              
             </p>
             
           </div>
@@ -218,7 +219,7 @@
     <!-- footer section -->
     <section class="container-fluid footer_section">
       <p>
-        &copy; <span id="displayYear"></span> &middot; CarParkBook
+        &copy; <span id="displayYear"></span> &middot; RitPark
       </p>
     </section>
     <!-- footer section -->
@@ -226,7 +227,8 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
-  
+
+
 </body>
 
 </html>

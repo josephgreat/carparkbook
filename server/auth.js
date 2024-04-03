@@ -2,7 +2,7 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstati
 import app from "./firebase_init.js"
 const username = document.getElementById("username");
 const password = document.getElementById("password");
-const form = document.getElementById("adminform");
+const form = document.getElementById("admin_form");
 const signoutBtn = document.getElementById("signout_btn");
 const toast = document.getElementById("toast");
 const loginBtn = document.getElementById("login_btn");
