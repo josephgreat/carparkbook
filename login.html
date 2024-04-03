@@ -26,6 +26,8 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <script type="module" src="server/auth.js"></script>
+  <script type="module" src="server/firebase_init.js"></script>
 </head>
 
 <body class="sub_page">
@@ -79,20 +81,23 @@
         <div class="row">
           <div class="col-4"></div>
           <div class="col-4">
-            <form action="admin/index.html">
+            <form id="adminform">
+              <div id="toast">
+                
+              </div>
               <div class=" form">
                 <div class="col">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="Your Username" id="parkingName">
+                  <label for="username" >Username</label>
+                  <input type="email" required class="form-control" placeholder="Your Username" id="username">
                 </div>
       
                 <div class="col">
                   <label for="password">Password</label>
-                  <input type="text" class="form-control" placeholder="Your password" id="parkingNumber">
+                  <input type="password" required class="form-control" placeholder="Your password" id="password">
                 </div>
                 <div class="col">
                   <div class="mt-5 d-flex justify-content-center btn-container contact_form-container">
-                    <button type="submit" class="btn btn-primary btn-block" style="display: inline-block;
+                    <button type="submit" id="login_btn" class="btn btn-primary btn-block" style="display: inline-block;
                     background-color: #fe4801;
                     color: #ffffff;
                     -webkit-transition: all 0.3s;
@@ -221,7 +226,7 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
-
+  
 </body>
 
 </html>
