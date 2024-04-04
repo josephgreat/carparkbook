@@ -14,8 +14,8 @@
   <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="css/templatemo-style.css">
   <link rel="stylesheet" href="./css/parking.css">
-</head>
-
+  <link rel="stylesheet" href="../css/toast.css">
+  
 <body id="reportsPage">
   <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
@@ -30,50 +30,50 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto h-100">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
 
-            <li class="nav-item">
-                <a class="nav-link active" href="parkings.html">
-                    <i class="far fa-file-alt"></i>
-                    Parking Space
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="parkings.html">
+              <i class="far fa-file-alt"></i>
+              Parking Space
+            </a>
+          </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="bookings.html">
-                    <i class="fas fa-shopping-cart"></i>
-                    Bookings
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="bookings.html">
+              <i class="fas fa-shopping-cart"></i>
+              Bookings
+            </a>
+          </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="users.html">
-                    <i class="far fa-user"></i>
-                    Users
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="users.html">
+              <i class="far fa-user"></i>
+              Users
+            </a>
+          </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="analytics.html">
-                    <i class="fas fa-cog"></i>
-                    Analytics
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analytics.html">
+              <i class="fas fa-cog"></i>
+              Analytics
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link d-block" href="index.html">
-                    Admin, <b>Logout</b>
-                </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link d-block" href="index.html">
+              Admin, <b>Logout</b>
+            </a>
+          </li>
         </ul>
-    </div>
+      </div>
     </div>
   </nav>
   <div class="container mt-5">
@@ -88,18 +88,19 @@
               <thead>
                 <tr class="flex align-center">
                   <th scope="col-5">RETAIL STORE NAME</th>
+                  <th scope="col-3">TOTAL SPACE</th>
                   <th scope="col-3">AVAILABLE SPACE</th>
                   <th scope="col-3">AVAILABILITY STATUS</th>
                   <th scope="col-1">&nbsp;</th>
                 </tr>
               </thead>
               <tbody id="parking_space_table">
-                
-                
+
+
               </tbody>
             </table>
           </div>
-         
+
           <!-- table container -->
           <a href="add-parking.html" class="btn btn-primary btn-block text-uppercase mb-3">Add Parking Space</a>
           <button class="btn btn-primary btn-block text-uppercase">
@@ -111,19 +112,23 @@
   </div>
   <footer class="tm-footer row tm-mt-small">
     <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2024</b> RitPark
-        </p>
+      <p class="text-center text-white mb-0 px-4 small">
+        Copyright &copy; <b>2024</b> RitPark
+      </p>
     </div>
-</footer>
+  </footer>
 
+  <div class="toast_container">
+    <i class="fas toast_icon"></i>
+    <p class="toast_text">dummy text</p>
+  </div>
   <script src="js/jquery-3.3.1.min.js"></script>
   <!-- https://jquery.com/download/ -->
   <script src="js/bootstrap.min.js"></script>
   <!-- https://getbootstrap.com/ -->
   <script type="module" defer src="../server/getparkingspace.js"></script>
   <script>
-    
+
     $(function () {
       $(".tm-product-name").on("click", function () {
         window.location.href = "edit-parking.html";

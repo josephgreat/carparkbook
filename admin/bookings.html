@@ -14,6 +14,7 @@
   <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="css/templatemo-style.css">
   <link rel="stylesheet" href="./css/bookings.css">
+  <link rel="stylesheet" href="./css/parking.css">
 </head>
 
 <body id="reportsPage">
@@ -84,8 +85,11 @@
             <h2 class="tm-block-title">List of Bookings</h2>
             <p class="text-white">Bookings</p>
             <div class="table-responsive">
+              <div class="loading_container">
+                <i class="fas fa-spinner loading_icon"></i>
+              </div>
 
-              <table class="table booking_table col-12">
+              <table class="table booked_table col-12">
                 <thead>
                   <tr>
                     <th scope="col">ORDER NO.</th>
@@ -98,7 +102,7 @@
                     <th scope="col">END DATE</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="booked_spaces">
 
                 </tbody>
               </table>
@@ -121,6 +125,8 @@
   <!-- https://jquery.com/download/ -->
   <script src="js/bootstrap.min.js"></script>
   <!-- https://getbootstrap.com/ -->
+  <script type="module" src="../server/getbooking.js"></script>
+  
 </body>
 
 </html>

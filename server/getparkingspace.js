@@ -19,7 +19,6 @@ const getAllParkingSpace = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "parking_space"));
     querySnapshot.forEach((parking_space) => {
-      let { no_of_slots, name } = parking_space.data();
       all_parking_space.push({
         id: parking_space.id,
         data: parking_space.data(),
@@ -32,6 +31,7 @@ const getAllParkingSpace = async () => {
 
   updateParkingSpaceUI();
 };
+
 
 const deleteParkingSpace = async (index) => {
   try {
@@ -50,7 +50,9 @@ const deleteParkingSpace = async (index) => {
 
 const updateParkingSpaceUI = () => {
   if (all_parking_space.length === 0) {
-    parkingSpaceTable.innerHTML = "<p class='no_parking_space_text'>No parking space available</p>";
+    table.style.minHeight = "20rem";
+
+    parkingSpaceTable.innerHTML = "<p class='no_space_text'>No parking space available</p>";
   } else {
     parkingSpaceTable.innerHTML = "";
     table.style.minHeight = "unset";
@@ -59,7 +61,8 @@ const updateParkingSpaceUI = () => {
       parkingSpaceTable.insertAdjacentHTML(
         "beforeend",
         `<tr>
-          <td class="tm-product-name col-5">${data.name}</td>
+          <td class="tm-product-name col-4">${data.name}</td>
+          <td class="col-3">${data.no_of_slots}</td>
           <td class="col-3">${slot_difference}</td>
           <td class="col-3">${slot_difference > 0 ? "Yes" : "No"}</td>
           <td class="col-1">
@@ -79,4 +82,6 @@ const updateParkingSpaceUI = () => {
   loadingNode.style.display = "none";
 };
 
-getAllParkingSpace();
+parkingSpaceTable && getAllParkingSpace();
+
+export {all_parking_space}

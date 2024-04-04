@@ -9,7 +9,7 @@
     transition: width .2s ease;
     width: 0;
 }
-.tm-product-table-container{
+.tm-product-table-container, .table-responsive{
     position: relative;
 }
 .table{
@@ -38,7 +38,7 @@ tbody#parking_space_table{
     /* color: rgb(200,200,200); */
 }
 
-.no_parking_space_text{
+.no_space_text{
     position: absolute;
     top: 50%;
     left: 50%;

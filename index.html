@@ -21,11 +21,16 @@
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./admin/css/fontawesome.min.css" />
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/toast.css">
+  <link rel="stylesheet" href="./admin/css/bookings.css">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> -->
+
 </head>
 
 <body>
@@ -39,7 +44,8 @@
               RitPark
             </span>
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -89,7 +95,7 @@
                   Retail Car Park Booking Platform
                 </h1>
                 <p>
-                  Welcome to "The Best Retail Car Park Booking Platform"! Here, we offer you a seamless and 
+                  Welcome to "The Best Retail Car Park Booking Platform"! Here, we offer you a seamless and
                   convenient solution for booking parking spaces at your favorite retail destinations. .
                 </p>
                 <div>
@@ -109,8 +115,9 @@
                   Parking Space Search
                 </h1>
                 <p>
-                  Our platform is designed to 
-                  simplify your parking experience, ensuring hassle-free access to parking facilities whenever you need them
+                  Our platform is designed to
+                  simplify your parking experience, ensuring hassle-free access to parking facilities whenever you need
+                  them
                 </p>
                 <div>
                   <a href="service.html">
@@ -132,53 +139,55 @@
     </section>
     <!-- end slider section -->
   </div>
-<br>
-<br>
+  <br>
+  <br>
   <!-- find section -->
   <section class="find_section">
     <div class="container">
-      <form action="">
+      <form action="" id="booking_form">
         <div class=" form-row">
           <div class="col-lg-3">
-            <label for="carPark">Select Retail Store</label>
-            <select name="" id="carPark" class="form-control" required>
-              <option value="">RitPark Electronics</option>
-              <option value="">RitPark Computers 1</option>
-              <option value="">RitPark Jewelries</option>
-              <option value="">RitPark Aluminium</option>
-              <option value="">RitPark Foods</option>
+            <label for="parking_space">Select Retail Store</label>
+            <select id="parking_space" name="selected_parking_space" 
+              class="form-control" required>
+              <option value="">--Select a space--</option>
             </select>
           </div>
           <div class="col-lg-3">
-            <label for="parkingName">Your Name Here</label>
-            <input type="text" class="form-control" placeholder="Your name" id="parkingName" required>
+            <label for="customer_name">Your Name Here</label>
+            <input type="text" class="form-control" placeholder="Your name" id="customer_name" name="customer_name"
+               required>
           </div>
 
           <div class="col-lg-3">
-            <label for="parkingNumber">Your Phone Number</label>
-            <input type="text" class="form-control" placeholder="Your phone number " id="parkingNumber" required>
+            <label for="customer_phone_number">Your Phone Number</label>
+            <input type="text" class="form-control" placeholder="Your phone number " id="customer_phone_number"
+              name="customer_phone_number"  required>
           </div>
 
           <div class="col-lg-3">
-            <label for="parkingNumber">Start Date</label>
-            <input type="date" class="form-control"  id="parkingNumber" required>
+            <label for="parking_start_date">Start Date</label>
+            <input type="date" placeholder="yyyy-mm-dd"  class="form-control" id="parking_start_date" name="parking_start_date"
+               required>
           </div>
 
           <div class="col-lg-3">
-            <label for="parkingNumber">End Date</label>
-            <input type="date" class="form-control"  id="parkingNumber" required>
+            <label for="parking_end_date">End Date</label>
+            <input type="date" class="form-control" id="parking_end_date" name="parking_end_date"
+               required>
           </div>
 
           <div class="col-lg-3">
-            <label for="parkingNumber">Time:</label>
-            <input type="time" id="parkingNumber"  class="form-control" required>
+            <label for="parking_time">Time:</label>
+            <input type="time" id="parking_time" class="form-control" name="parking_time" 
+              required>
           </div>
-          
-      
+
+
           <div class="col-lg-3">
             <div class="btn-container">
-              <center><button type="submit" class="">Submit</button></center>
-                
+              <center><button type="submit" class="" id="submit_booking_btn">Submit</button></center>
+
               </button>
             </div>
           </div>
@@ -187,6 +196,14 @@
       </form>
     </div>
   </section>
+  <div class="qr-code-container">
+    <div class="qr-code-wrapper">
+      <h4 class="title">Your QR Code</h4>
+      <div class="qr-code" style></div>
+      <p class="detail">Ensure you download it</p>
+      <button class="close_btn"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
 
   <!-- end find section -->
 
@@ -205,7 +222,7 @@
               </h5>
               <p style="text-align: justify;">
                 With RitPark, you can enjoy complimentary parking services, eliminating the need to pay
-                 for parking. Say goodbye to parking fees and keep more money in your pocket.
+                for parking. Say goodbye to parking fees and keep more money in your pocket.
               </p>
             </div>
           </div>
@@ -220,8 +237,8 @@
                 Save Time
               </h5>
               <p style="text-align: justify;">
-                Say goodbye to wasted time circling around lots in search of an open spot. RitPark's 
-                convenient platform enables you to find parking swiftly, 
+                Say goodbye to wasted time circling around lots in search of an open spot. RitPark's
+                convenient platform enables you to find parking swiftly,
                 saving you valuable time for more important activities.
               </p>
             </div>
@@ -238,7 +255,7 @@
               </h5>
               <p style="text-align: justify;">
                 Forget the frustration of searching for parking spots. RitPark helps you locate available spaces
-                 quickly and efficiently, reducing the stress of navigating crowded parking lots.
+                quickly and efficiently, reducing the stress of navigating crowded parking lots.
               </p>
             </div>
           </div>
@@ -263,8 +280,9 @@
 
             <p style="text-align: justify;">
               Choose RitPark for hassle-free retail parking! With our intuitive platform,
-               you can easily find and book parking spaces at your favorite stores. Enjoy seamless booking, real-time 
-              availability updates, and secure transactions. Say goodbye to parking woes and hello to convenience with RitPark!
+              you can easily find and book parking spaces at your favorite stores. Enjoy seamless booking, real-time
+              availability updates, and secure transactions. Say goodbye to parking woes and hello to convenience with
+              RitPark!
             </p>
             <div>
               <a href="about.html">
@@ -331,16 +349,21 @@
       </p>
       <div class="box">
         <div class="img-box">
-          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="355.555px" height="355.555px" viewBox="0 0 355.555 355.555" style="enable-background:new 0 0 355.555 355.555;" xml:space="preserve">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" width="355.555px" height="355.555px" viewBox="0 0 355.555 355.555"
+            style="enable-background:new 0 0 355.555 355.555;" xml:space="preserve">
             <g>
               <g>
-                <path d="M107.412,266.641c-15.434,0-27.941,12.502-27.941,27.938s12.508,27.938,27.941,27.938
+                <path
+                  d="M107.412,266.641c-15.434,0-27.941,12.502-27.941,27.938s12.508,27.938,27.941,27.938
                    c15.438,0,27.942-12.502,27.942-27.938S122.85,266.641,107.412,266.641z M107.412,306.724c-6.71,0-12.146-5.437-12.146-12.146
                    c0-6.713,5.436-12.146,12.146-12.146c6.709,0,12.149,5.434,12.149,12.146C119.561,301.287,114.121,306.724,107.412,306.724z" />
-                <path d="M232.203,266.641c-15.432,0-27.939,12.502-27.939,27.938s12.508,27.938,27.939,27.938
+                <path
+                  d="M232.203,266.641c-15.432,0-27.939,12.502-27.939,27.938s12.508,27.938,27.939,27.938
                    c15.439,0,27.943-12.502,27.943-27.938S247.643,266.641,232.203,266.641z M232.203,306.724c-6.709,0-12.145-5.437-12.145-12.146
                    c0-6.713,5.436-12.146,12.145-12.146c6.711,0,12.15,5.434,12.15,12.146C244.354,301.287,238.914,306.724,232.203,306.724z" />
-                <path d="M284.574,216.828c-12.17-3.164-22.572-12.893-27.352-22.123l-16.838-32.348c-4.779-9.228-17.191-16.779-27.585-16.779
+                <path
+                  d="M284.574,216.828c-12.17-3.164-22.572-12.893-27.352-22.123l-16.838-32.348c-4.779-9.228-17.191-16.779-27.585-16.779
                    h-98.77c-10.393,0-21.631,8.051-24.974,17.891l-10.313,30.354c-1.016,4.014-7.703,24.037-21.657,24.037
                    c-10.393,0-21.803,13.694-21.803,24.086v35.902c0,10.393,8.502,18.896,18.896,18.896h19.44c-0.046-0.717-0.076-1.438-0.076-2.166
                    c0-18.674,15.192-33.864,33.867-33.864c18.676,0,33.87,15.19,33.87,33.864c0,0.728-0.031,1.449-0.077,2.166h57.208
@@ -352,41 +375,58 @@
                 <path d="M332.77,33.039H22.784C10.221,33.039,0,43.26,0,55.823v229.692c0,3.86,3.141,7,7,7c3.86,0,7-3.14,7-7V55.823
                    c0-4.844,3.94-8.784,8.784-8.784H332.77c4.844,0,8.785,3.94,8.785,8.784v229.692c0,3.86,3.141,7,7,7c3.857,0,7-3.14,7-7V55.823
                    C355.555,43.26,345.334,33.039,332.77,33.039z" />
-                <path d="M264.926,102.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V102.794z" />
-                <path d="M264.926,132.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V132.794z" />
+                <path
+                  d="M264.926,102.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V102.794z" />
+                <path
+                  d="M264.926,132.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V132.794z" />
                 <path d="M269.926,77.794c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5v10
                    C264.926,75.556,267.164,77.794,269.926,77.794z" />
-                <path d="M264.926,162.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V162.794z" />
+                <path
+                  d="M264.926,162.794c0,2.762,2.236,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.764,0-5,2.239-5,5V162.794z" />
                 <path d="M316,177.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10
                    C321,180.033,318.762,177.794,316,177.794z" />
-                <path d="M316,87.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10C321,90.033,318.762,87.794,316,87.794z" />
-                <path d="M316,57.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10C321,60.033,318.762,57.794,316,57.794z" />
+                <path
+                  d="M316,87.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10C321,90.033,318.762,87.794,316,87.794z" />
+                <path
+                  d="M316,57.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10C321,60.033,318.762,57.794,316,57.794z" />
                 <path d="M316,147.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10
                    C321,150.033,318.762,147.794,316,147.794z" />
                 <path d="M316,117.794c-2.76,0-5,2.239-5,5v10c0,2.762,2.24,5,5,5c2.764,0,5-2.238,5-5v-10
                    C321,120.033,318.762,117.794,316,117.794z" />
                 <path d="M85.629,77.794c2.761,0,5-2.238,5-5v-10c0-2.761-2.239-5-5-5c-2.763,0-5,2.239-5,5v10
                    C80.629,75.556,82.866,77.794,85.629,77.794z" />
-                <path d="M80.629,102.794c0,2.762,2.237,5,5,5c2.761,0,5-2.238,5-5v-10c0-2.761-2.239-5-5-5c-2.763,0-5,2.239-5,5V102.794z" />
-                <path d="M80.629,132.794c0,2.762,2.237,5,5,5c2.761,0,5-2.238,5-5v-10c0-2.761-2.239-5-5-5c-2.763,0-5,2.239-5,5V132.794z" />
-                <path d="M218.852,102.794c0,2.762,2.237,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.763,0-5,2.239-5,5V102.794z" />
-                <path d="M218.852,129.584c0,2.761,2.237,5,5,5c2.762,0,5-2.239,5-5v-6.79c0-2.761-2.238-5-5-5c-2.763,0-5,2.239-5,5V129.584z" />
+                <path
+                  d="M80.629,102.794c0,2.762,2.237,5,5,5c2.761,0,5-2.238,5-5v-10c0-2.761-2.239-5-5-5c-2.763,0-5,2.239-5,5V102.794z" />
+                <path
+                  d="M80.629,132.794c0,2.762,2.237,5,5,5c2.761,0,5-2.238,5-5v-10c0-2.761-2.239-5-5-5c-2.763,0-5,2.239-5,5V132.794z" />
+                <path
+                  d="M218.852,102.794c0,2.762,2.237,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.763,0-5,2.239-5,5V102.794z" />
+                <path
+                  d="M218.852,129.584c0,2.761,2.237,5,5,5c2.762,0,5-2.239,5-5v-6.79c0-2.761-2.238-5-5-5c-2.763,0-5,2.239-5,5V129.584z" />
                 <path d="M223.852,77.794c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.763,0-5,2.239-5,5v10
                    C218.852,75.556,221.09,77.794,223.852,77.794z" />
                 <path d="M177.777,77.794c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5s-5,2.239-5,5v10
                    C172.777,75.556,175.015,77.794,177.777,77.794z" />
-                <path d="M172.777,129.584c0,2.761,2.238,5,5,5s5-2.239,5-5v-6.79c0-2.761-2.238-5-5-5s-5,2.239-5,5V129.584z" />
-                <path d="M172.777,102.794c0,2.762,2.238,5,5,5s5-2.238,5-5v-10c0-2.761-2.238-5-5-5s-5,2.239-5,5V102.794z" />
+                <path
+                  d="M172.777,129.584c0,2.761,2.238,5,5,5s5-2.239,5-5v-6.79c0-2.761-2.238-5-5-5s-5,2.239-5,5V129.584z" />
+                <path
+                  d="M172.777,102.794c0,2.762,2.238,5,5,5s5-2.238,5-5v-10c0-2.761-2.238-5-5-5s-5,2.239-5,5V102.794z" />
                 <path d="M131.702,77.794c2.763,0,5-2.238,5-5v-10c0-2.761-2.237-5-5-5c-2.762,0-5,2.239-5,5v10
                    C126.702,75.556,128.94,77.794,131.702,77.794z" />
-                <path d="M126.702,102.794c0,2.762,2.238,5,5,5c2.763,0,5-2.238,5-5v-10c0-2.761-2.237-5-5-5c-2.762,0-5,2.239-5,5V102.794z" />
-                <path d="M126.702,129.584c0,2.761,2.238,5,5,5c2.763,0,5-2.239,5-5v-6.79c0-2.761-2.237-5-5-5c-2.762,0-5,2.239-5,5V129.584z" />
+                <path
+                  d="M126.702,102.794c0,2.762,2.238,5,5,5c2.763,0,5-2.238,5-5v-10c0-2.761-2.237-5-5-5c-2.762,0-5,2.239-5,5V102.794z" />
+                <path
+                  d="M126.702,129.584c0,2.761,2.238,5,5,5c2.763,0,5-2.239,5-5v-6.79c0-2.761-2.237-5-5-5c-2.762,0-5,2.239-5,5V129.584z" />
                 <path d="M39.552,77.794c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5v10
                    C34.552,75.556,36.792,77.794,39.552,77.794z" />
-                <path d="M34.552,102.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V102.794z" />
-                <path d="M34.552,132.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V132.794z" />
-                <path d="M34.552,192.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V192.794z" />
-                <path d="M34.552,162.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V162.794z" />
+                <path
+                  d="M34.552,102.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V102.794z" />
+                <path
+                  d="M34.552,132.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V132.794z" />
+                <path
+                  d="M34.552,192.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V192.794z" />
+                <path
+                  d="M34.552,162.794c0,2.762,2.239,5,5,5c2.762,0,5-2.238,5-5v-10c0-2.761-2.238-5-5-5c-2.761,0-5,2.239-5,5V162.794z" />
               </g>
             </g>
             <g>
@@ -427,13 +467,13 @@
             Car Park Booking platform
           </h5>
           <p style="text-align: justify;">
-            At RitPark, we pride ourselves on offering an array of comprehensive services tailored 
-to the needs of retail stores. One of our primary offerings is the provision of free 
-parking space, strategically allocated to accommodate the influx of shoppers visiting 
-the retail outlets. This complimentary service not only enhances the shopping experience 
-for customers but also contributes to increased foot traffic and sales for the stores.
- With ample parking available, customers can enjoy hassle-free
- access to their favorite retail destinations, promoting convenience and satisfaction.
+            At RitPark, we pride ourselves on offering an array of comprehensive services tailored
+            to the needs of retail stores. One of our primary offerings is the provision of free
+            parking space, strategically allocated to accommodate the influx of shoppers visiting
+            the retail outlets. This complimentary service not only enhances the shopping experience
+            for customers but also contributes to increased foot traffic and sales for the stores.
+            With ample parking available, customers can enjoy hassle-free
+            access to their favorite retail destinations, promoting convenience and satisfaction.
           </p>
           <div>
             <a href="service.html">
@@ -443,10 +483,10 @@ for customers but also contributes to increased foot traffic and sales for the s
         </div>
       </div>
       <div class="box">
-        
-        </div>
-        <div class="detail-box">
-         
+
+      </div>
+      <div class="detail-box">
+
   </section>
 
   <!-- end service section -->
@@ -507,15 +547,15 @@ for customers but also contributes to increased foot traffic and sales for the s
             RitPark
           </h6>
           <p style="text-align: justify;">
-            At RitPark, we pride ourselves on offering an array of comprehensive services tailored 
-to the needs of retail stores. One of our primary offerings is the provision of free 
-parking space, strategically allocated to accommodate the influx of shoppers visiting 
-the retail outlets. This complimentary service not only enhances the shopping experience 
-for customers but also contributes to increased foot traffic and sales for the stores.
- With ample parking available, customers can enjoy hassle-free
- access to their favorite retail destinations, promoting convenience and satisfaction.
+            At RitPark, we pride ourselves on offering an array of comprehensive services tailored
+            to the needs of retail stores. One of our primary offerings is the provision of free
+            parking space, strategically allocated to accommodate the influx of shoppers visiting
+            the retail outlets. This complimentary service not only enhances the shopping experience
+            for customers but also contributes to increased foot traffic and sales for the stores.
+            With ample parking available, customers can enjoy hassle-free
+            access to their favorite retail destinations, promoting convenience and satisfaction.
           </p>
-          
+
         </div>
         <div class="col-lg-4">
           <h6>
@@ -604,11 +644,15 @@ for customers but also contributes to increased foot traffic and sales for the s
     </p>
   </section>
   <!-- footer section -->
-
+  <div class="toast_container">
+    <i class="fas toast_icon"></i>
+    <p class="toast_text">dummy text</p>
+  </div>
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
+  <script type="module" src="./server/booking.js"></script>
 
 </body>
 
