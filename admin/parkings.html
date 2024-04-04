@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="css/templatemo-style.css">
+  <link rel="stylesheet" href="./css/parking.css">
 </head>
 
 <body id="reportsPage">
@@ -80,77 +81,25 @@
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
         <div class="tm-bg-primary-dark tm-block tm-block-products">
           <div class="tm-product-table-container">
+            <div class="loading_container">
+              <i class="fas fa-spinner loading_icon"></i>
+            </div>
             <table class="table table-hover tm-table-small tm-product-table">
               <thead>
-                <tr>
-                  <th scope="col">&nbsp;</th>
-                  <th scope="col">RETAIL STORE NAME</th>
-                  <th scope="col">AVAILABLE SPACE</th>
-                  <th scope="col">AVAILABILITY STATUS</th>
-                  <th scope="col">&nbsp;</th>
+                <tr class="flex align-center">
+                  <th scope="col-5">RETAIL STORE NAME</th>
+                  <th scope="col-3">AVAILABLE SPACE</th>
+                  <th scope="col-3">AVAILABILITY STATUS</th>
+                  <th scope="col-1">&nbsp;</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">RitPark Electronics</td>
-                  <td>11</td>
-                  <td>Yes</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">RitPark Computers 1</td>
-                  <td>50</td>
-                  <td>No</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">RitPark Jewelries</td>
-                  <td>10</td>
-                  <td>No</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">RitPark Aluminium</td>
-                  <td>10</td>
-                  <td>No</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">RitPark Foods</td>
-                  <td>10</td>
-                  <td>No</td>
-                  <td>
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
+              <tbody id="parking_space_table">
+                
+                
               </tbody>
             </table>
           </div>
+         
           <!-- table container -->
           <a href="add-parking.html" class="btn btn-primary btn-block text-uppercase mb-3">Add Parking Space</a>
           <button class="btn btn-primary btn-block text-uppercase">
@@ -172,7 +121,9 @@
   <!-- https://jquery.com/download/ -->
   <script src="js/bootstrap.min.js"></script>
   <!-- https://getbootstrap.com/ -->
+  <script type="module" defer src="../server/getparkingspace.js"></script>
   <script>
+    
     $(function () {
       $(".tm-product-name").on("click", function () {
         window.location.href = "edit-parking.html";

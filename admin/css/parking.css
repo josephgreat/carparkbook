@@ -1,0 +1,78 @@
+.uploading_bar{
+    height: .3rem;
+    background-color: grey;
+    padding: 0;
+}
+.uploading_bar #upload_progress{
+    background-color: #fe4801;
+    height: .3rem;
+    transition: width .2s ease;
+    width: 0;
+}
+.tm-product-table-container{
+    position: relative;
+}
+.table{
+    position: relative;
+    min-height: 20rem;
+}
+tbody#parking_space_table{
+    position: relative;
+}
+.table thead th, .table thead td{
+    vertical-align: middle;
+}
+
+.delete_icon{
+    color: rgb(150, 50, 50);
+    /* background-color: rgb(200,200,200); */
+    padding: .3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color, transform .1s ease;
+}
+
+.delete_icon:hover{
+    color: rgb(250, 20, 20);
+    transform: scale(1.15);
+    /* color: rgb(200,200,200); */
+}
+
+.no_parking_space_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.loading_container{
+    display: grid;
+    place-items: center;
+    padding: 5rem 0;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.loading_container .loading_icon{
+    color: white;
+    font-size: 2rem;
+    animation: rotate 1s linear infinite ;
+    animation-fill-mode: forwards;
+    transition: all .3s ease;
+    transform: rotate(360deg);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    50%{transform: rotate(180deg);}
+    to{transform: rotate(360deg);}
+    
+}
