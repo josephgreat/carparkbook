@@ -11,9 +11,13 @@ import showToast from "../js/toast.js";
 const parkingSpaceTable = document.getElementById("parking_space_table");
 const table = document.querySelector(".table");
 const loadingNode = document.querySelector(".loading_container");
+const parkingSpaceImageContainer = document.querySelector(
+  ".parking_space_image_container"
+);
 
 const db = getFirestore(app);
 let all_parking_space = [];
+let parking_space_to_be_edited = {};
 
 const getAllParkingSpace = async () => {
   try {
@@ -29,9 +33,9 @@ const getAllParkingSpace = async () => {
     showToast({ type: "error", text: error.message });
   }
 
-  updateParkingSpaceUI();
+  parkingSpaceTable && updateParkingSpaceUI();
+  parkingSpaceImageContainer && updateDashboardUI();
 };
-
 
 const deleteParkingSpace = async (index) => {
   try {
@@ -48,11 +52,19 @@ const deleteParkingSpace = async (index) => {
   }
 };
 
+const editParkingSpace = (index) => {
+  const id = encodeURIComponent(all_parking_space[index].id);
+  location.href = `/admin/edit-parking.html?id=${id}`;
+
+  
+};
+
 const updateParkingSpaceUI = () => {
   if (all_parking_space.length === 0) {
     table.style.minHeight = "20rem";
 
-    parkingSpaceTable.innerHTML = "<p class='no_space_text'>No parking space available</p>";
+    parkingSpaceTable.innerHTML =
+      "<p class='no_space_text'>No parking space available</p>";
   } else {
     parkingSpaceTable.innerHTML = "";
     table.style.minHeight = "unset";
@@ -60,7 +72,7 @@ const updateParkingSpaceUI = () => {
       let slot_difference = data.no_of_slots - data.no_of_taken_slots;
       parkingSpaceTable.insertAdjacentHTML(
         "beforeend",
-        `<tr>
+        `<tr class="parking_space_row">
           <td class="tm-product-name col-4">${data.name}</td>
           <td class="col-3">${data.no_of_slots}</td>
           <td class="col-3">${slot_difference}</td>
@@ -77,11 +89,34 @@ const updateParkingSpaceUI = () => {
     deleteIcons.forEach((deleteIcon, index) => {
       deleteIcon.addEventListener("click", () => deleteParkingSpace(index));
     });
+
+    const parkingSpaceRows = document.querySelectorAll(".parking_space_row");
+    parkingSpaceRows.forEach((parkingSpaceRow, index) =>
+      parkingSpaceRow.addEventListener("click", () => editParkingSpace(index))
+    );
   }
 
   loadingNode.style.display = "none";
 };
 
-parkingSpaceTable && getAllParkingSpace();
+const updateDashboardUI = () => {
+  console.log("Dashboard");
+  all_parking_space.map(({ data }) => {
+    // <img src="${data.image}" alt="${data.name}" class="img-responsive parking_space_img">x
+    parkingSpaceImageContainer.insertAdjacentHTML(
+      "afterbegin",
+      `
+    <div class="col-lg-3 col-md-5 col-sm-8 parking_space_card">
+    <div class="parking_space_img" style="background-image: url('${data.image}')"></div>
+    <div class="parking_space_details">
+      <h4 class="parking_space_title">${data.name}</h4>
+      <p class="parking_space_description">${data.description}</p>
+    </div>
+    </div>`
+    );
+  });
+  loadingNode.style.display = "none";
+};
 
-export {all_parking_space}
+
+getAllParkingSpace();

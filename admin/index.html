@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="./css/parking.css">
 </head>
 
 <body id="reportsPage">
@@ -22,8 +23,9 @@
                 <a class="navbar-brand" href="index.html">
                     <h1 class="tm-site-title mb-0">RitPark</h1>
                 </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
@@ -86,10 +88,10 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
-                        <div class="row">
-                            <div class="col-lg-4"><img src="../images/w-1.jpg" alt="" class="img-responsive"></div>
-                            <div class="col-lg-4"><img src="../images/w-2.jpg" alt="" class="img-responsive"></div>
-                            <div class="col-lg-4"><img src="../images/w-4.jpg" alt="" class="img-responsive"></div>
+                        <div class="row parking_space_image_container">
+                            <div class="loading_container">
+                                <i class="fas fa-spinner loading_icon"></i>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -114,6 +116,7 @@
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
     <script type="module" src="../server/auth.js"></script>
+    <script type="module" src="../server/getparkingspace.js"></script>
 </body>
 
 </html>

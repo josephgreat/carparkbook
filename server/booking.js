@@ -64,10 +64,8 @@ const getAvailableParkingSpace = async () => {
 getAvailableParkingSpace();
 
 const dateIsValid = () => {
-    const startDate = [...(parkingStartDate.value.split("-")), ...(parkingTime.value.split(":"))];
-    const endDate = [...(parkingEndDate.value.split("-")), ...("23:59:59".split(":"))];
-    
-  if (new Date() - new Date(...startDate) < 0) {
+    console.log(parkingStartDate.value)
+  if (new Date() - new Date(parkingStartDate.value) > 0) {
     console.log("Start date must be greater than or equal to the current date");
     showToast({
       type: "error",
@@ -75,7 +73,7 @@ const dateIsValid = () => {
     });
     return false;
   } else if (
-    new Date(...endDate) - new Date(...startDate) <
+    new Date(parkingEndDate.value) - new Date(parkingStartDate.value) <
     0
   ) {
     showToast({

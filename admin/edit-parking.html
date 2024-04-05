@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="css/templatemo-style.css">
+  <link rel="stylesheet" href="./css/parking.css">
+  <link rel="stylesheet" href="../css/toast.css">
+
 </head>
 
 <body>
@@ -88,39 +91,42 @@
           </div>
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">
-              <form action="" method="post" class="tm-edit-product-form">
+              <form  method="post" class="tm-edit-product-form" id="parking_space_form">
                 <div class="form-group mb-3">
-                  <label for="name">Parking Space Name
+                  <label for="parking_space_name">Parking Space Name
                   </label>
-                  <input id="name" name="name" type="text" value="Lorem Ipsum Parking Space"
+                  <input id="parking_space_name" name="name" type="text" value="Lorem Ipsum Parking Space"
                     class="form-control validate" />
                 </div>
                 <div class="form-group mb-3">
-                  <label for="description">Description</label>
-                  <textarea class="form-control validate tm-small" rows="5"
+                  <label for="parking_space_description">Description</label>
+                  <textarea class="form-control validate tm-small" rows="5" id="parking_space_description"
                     required>Lorem ipsum dolor amet gentrify glossier locavore messenger bag chillwave hashtag irony migas wolf kale chips small batch kogi direct trade shaman.</textarea>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="category">Category</label>
-                  <input id="count" name="count" type="text" value="Lorem Ipsum Parking Space"
+                  <label for="parking_space_slots">Slots</label>
+                  <input id="parking_space_slots" name="count" type="text" value="Lorem Ipsum Parking Space"
                     class="form-control validate" />
                 </div>
 
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-              <div class="tm-product-img-edit mx-auto">
-                <img src="../images/w-2.jpg" alt="Parking Space image" class="img-fluid d-block mx-auto">
-                <i class="fas fa-cloud-upload-alt tm-upload-icon"
+              <div  id="parking_space_image_preview" class="tm-product-img-dummy mx-auto">
+                <i class="fas fa-cloud-upload-alt tm-upload-icon" style="z-index: 2;"
                   onclick="document.getElementById('fileInput').click();"></i>
+                
+              </div>
+              <div class="uploading_bar">
+                <div id="upload_progress" ></div>
               </div>
               <div class="custom-file mt-3 mb-3">
-                <input id="fileInput" type="file" style="display:none;" />
+                <input id="fileInput" type="file"  accept="image/*" style="display:none;" />
                 <input type="button" class="btn btn-primary btn-block mx-auto" value="CHANGE IMAGE NOW"
                   onclick="document.getElementById('fileInput').click();" />
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
+              <button type="submit" id="edit_parking_space_btn" class="btn btn-primary btn-block text-uppercase">Update Now</button>
             </div>
             </form>
           </div>
@@ -130,11 +136,15 @@
   </div>
   <footer class="tm-footer row tm-mt-small">
     <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2024</b> RitPark
-        </p>
+      <p class="text-center text-white mb-0 px-4 small">
+        Copyright &copy; <b>2024</b> RitPark
+      </p>
     </div>
-</footer>
+  </footer>
+  <div class="toast_container">
+    <i class="fas toast_icon"></i>
+    <p class="toast_text">dummy text</p>
+  </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <!-- https://jquery.com/download/ -->
@@ -142,6 +152,7 @@
   <!-- https://jqueryui.com/download/ -->
   <script src="js/bootstrap.min.js"></script>
   <!-- https://getbootstrap.com/ -->
+  <script type="module" src="../server/editparkingspace.js"></script>
   <script>
     $(function () {
       $("#expire_date").datepicker({

@@ -76,3 +76,34 @@ tbody#parking_space_table{
     to{transform: rotate(360deg);}
     
 }
+
+.parking_space_image_container{
+    gap: 1.5rem;
+    justify-content: space-around;
+    overflow: auto;
+    position: relative;
+    height: 100%;
+}
+.parking_space_card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 0;
+    margin: 1rem;
+    box-shadow: 0 0 10px 0px rgba(255, 255,255,0.3);
+}
+.parking_space_card .parking_space_img{
+    background-size: cover;
+    height: 11.2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+}
+
+.parking_space_details {
+    padding: 1rem;
+}
+.parking_space_description{
+    max-height: 10ex;
+    overflow: auto;
+}

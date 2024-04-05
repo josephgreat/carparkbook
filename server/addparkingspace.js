@@ -3,14 +3,9 @@ import {
   addDoc,
   getFirestore,
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-storage.js";
 import app from "./firebase_init.js";
 import showToast from "../js/toast.js";
+import { uploadImageToFirebaseStorage } from "./uploadImage.js";
 
 const parkingSpaceName = document.getElementById("parking_space_name");
 const parkingSpaceDescription = document.getElementById(
@@ -25,7 +20,6 @@ const parkingSpaceImagePreview = document.getElementById(
 const addParkingSpaceBtn = document.getElementById("add_parking_space_btn");
 const uploadProgress = document.getElementById("upload_progress");
 
-const storage = getStorage(app);
 const db = getFirestore(app);
 
 let parking_space_data = {
@@ -50,41 +44,7 @@ const getImage = (e) => {
   }
 };
 
-const uploadImageToFirebaseStorage = () => {
-  return new Promise((resolve, reject) => {
-    const storageRef = ref(storage, "images/" + imageFile.name);
 
-    const uploadTask = uploadBytesResumable(storageRef, imageFile);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        // Get the progress percentage
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-        console.log("Upload is " + progress + "% done");
-        uploadProgress.style.width = progress + "%";
-        // You can update the progress UI here if needed
-      },
-      (error) => {
-        console.error("Error uploading file:", error);
-        reject(error);
-      },
-      () => {
-        // Upload completed successfully, get download URL
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            resolve(downloadURL);
-          })
-          .catch((error) => {
-            console.error("Error getting download URL:", error);
-            reject(error);
-          });
-      }
-    );
-  });
-};
 
 parkingSpaceImage.addEventListener("change", getImage);
 
@@ -93,7 +53,7 @@ parkingSpaceForm.addEventListener("submit", async (e) => {
   addParkingSpaceBtn.innerHTML = "Adding parking space...";
   addParkingSpaceBtn.disabled = true;
   try {
-    const imageUrl = await uploadImageToFirebaseStorage();
+    const imageUrl = await uploadImageToFirebaseStorage(uploadProgress, imageFile);
     parking_space_data = {
       ...parking_space_data,
       name: parkingSpaceName.value,
@@ -114,7 +74,7 @@ parkingSpaceForm.addEventListener("submit", async (e) => {
         location.pathname = "/admin/parkings.html";
       }, 3000);
     }
-    console.log(parking_space_data);
+ 
   } catch (error) {
     console.error("Error:", error);
     addParkingSpaceBtn.disabled = true;
