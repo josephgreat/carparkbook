@@ -37,6 +37,8 @@ const loginAdmin = (e) =>{
       });
 }
 
+
+
 const logoutAdmin = (e) => {
   signOut(auth).then(() => {
     window.location.pathname = "../index.html";
