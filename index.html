@@ -30,7 +30,11 @@
   <link rel="stylesheet" href="./css/toast.css">
   <link rel="stylesheet" href="./admin/css/bookings.css">
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> -->
-
+  <!-- emailjs -->
+  <script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+></script>
 </head>
 
 <body>
@@ -63,8 +67,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact us</a>
-
-
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="login.html"> Admin </a>
                 </li>
@@ -148,39 +151,35 @@
         <div class=" form-row">
           <div class="col-lg-3">
             <label for="parking_space">Select Retail Store</label>
-            <select id="parking_space" name="selected_parking_space" 
-              class="form-control" required>
+            <select id="parking_space" name="selected_parking_space" class="form-control" required>
               <option value="">--Select a space--</option>
             </select>
           </div>
           <div class="col-lg-3">
             <label for="customer_name">Your Name Here</label>
             <input type="text" class="form-control" placeholder="Your name" id="customer_name" name="customer_name"
-               required>
+              required>
           </div>
 
           <div class="col-lg-3">
             <label for="customer_phone_number">Your Phone Number</label>
             <input type="text" class="form-control" placeholder="Your phone number " id="customer_phone_number"
-              name="customer_phone_number"  required>
+              name="customer_phone_number" required>
           </div>
 
           <div class="col-lg-3">
             <label for="parking_start_date">Start Date</label>
-            <input type="date"  class="form-control" id="parking_start_date" name="parking_start_date"
-               required>
+            <input type="date" class="form-control" id="parking_start_date" name="parking_start_date" required>
           </div>
 
           <div class="col-lg-3">
             <label for="parking_end_date">End Date</label>
-            <input type="date" class="form-control" id="parking_end_date" name="parking_end_date"
-               required>
+            <input type="date" class="form-control" id="parking_end_date" name="parking_end_date" required>
           </div>
 
           <div class="col-lg-3">
             <label for="parking_time">Time:</label>
-            <input type="time" id="parking_time" class="form-control" name="parking_time" 
-              required>
+            <input type="time" id="parking_time" class="form-control" name="parking_time" required>
           </div>
 
 
@@ -503,23 +502,23 @@
       <div class="">
         <div class="row">
           <div class="col-md-6 mx-auto">
-            <form action="">
+            <form id="contact_form">
               <div class="contact_form-container">
                 <div>
                   <div>
-                    <input type="text" placeholder="Name" required>
+                    <input type="text" placeholder="Name" id="sender_name" required>
                   </div>
                   <div>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" id="sender_email" required>
                   </div>
                   <div>
-                    <input type="text" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Phone Number" id="sender_phone_number" required>
                   </div>
                   <div class="">
-                    <input type="text" placeholder="Message" class="message_input" required>
+                    <input type="text" placeholder="Message" id="sender_message" class="message_input" required>
                   </div>
                   <div class="mt-5 d-flex justify-content-center ">
-                    <button type="submit">
+                    <button type="submit" id="contact_submit_btn">
                       Send
                     </button>
                   </div>
@@ -653,7 +652,8 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
   <script type="module" src="./server/booking.js"></script>
-
+<script src="./server/contact.js"></script>
+<script type="module" src="./server/connection.js"></script>
 </body>
 
 </html>

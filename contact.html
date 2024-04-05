@@ -26,6 +26,11 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <!-- emailjs -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+    ></script>
 </head>
 
 <body class="sub_page">
@@ -84,23 +89,23 @@
       <div class="">
         <div class="row">
           <div class="col-md-6 mx-auto">
-            <form action="">
+            <form id="contact_form">
               <div class="contact_form-container">
                 <div>
                   <div>
-                    <input type="text" placeholder="Name" required>
+                    <input type="text" placeholder="Name" id="sender_name" required>
                   </div>
                   <div>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" id="sender_email" required>
                   </div>
                   <div>
-                    <input type="text" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Phone Number" id="sender_phone_number" required>
                   </div>
                   <div class="">
-                    <input type="text" placeholder="Message" class="message_input" required>
+                    <input type="text" placeholder="Message" id="sender_message" class="message_input" required>
                   </div>
                   <div class="mt-5 d-flex justify-content-center ">
-                    <button type="submit">
+                    <button type="submit" id="contact_submit_btn">
                       Send
                     </button>
                   </div>
@@ -229,7 +234,7 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/custom.js"></script>
-
+<script src="./server/contact.js"></script>
 </body>
 
 </html>
