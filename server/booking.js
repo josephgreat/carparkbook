@@ -118,6 +118,36 @@ const getParkingSlot = () => {
   return { parking_slot_number, order_number, parking_space_id };
 };
 
+const generateBookingTable = (data) => {
+  let table = document.createElement('table');
+  let booking_titles = Object.keys(data);
+  let booking_values = booking_titles.map(key => data[key]);
+
+  let tableHead = document.createElement('thead');
+  let tableBody = document.createElement('tbody');
+  let tableRowHead = document.createElement('tr');
+  let tableRowBody = document.createElement('tr');
+  
+  booking_titles.map((title) => {
+    let th = document.createElement('th');
+    th.innerHTML = title;
+    tableRowHead.appendChild(th);
+  });
+  tableHead.appendChild(tableRowHead);
+
+  booking_values.map((value) => {
+    let td = document.createElement('td');
+    td.innerHTML = value;
+    tableRowBody.appendChild(td);
+  });
+  tableBody.appendChild(tableRowBody);
+
+  table.appendChild(tableHead);
+  table.appendChild(tableBody);
+  
+  // qrcodeContainer.appendChild(table);
+}
+
 const generateQRCode = async (data) => {
   // Create QR code image element
   let qrcodeImg = document.createElement("img");
@@ -138,6 +168,7 @@ const generateQRCode = async (data) => {
 
   // Append download link
   qrcodeElement.appendChild(download_link);
+  generateBookingTable(data);
   qrcodeContainer.style.visibility = "visible";
 };
 
@@ -148,42 +179,48 @@ function extFn(url) {
 }
 
 const uploadBooking = async () => {
-  if (dateIsValid()) {
-    submitBookingBtn.innerHTML = "Submitting...";
-    submitBookingBtn.disabled = true;
-
-    booking_data = {
-      selected_parking_space: parkingSpace.value,
-      customer_name: customerName.value,
-      customer_phone_number: customerPhoneNumber.value,
-      parking_end_date: parkingEndDate.value,
-      parking_start_date: parkingStartDate.value,
-      parking_time: parkingTime.value,
-      parking_slot_number: getParkingSlot().parking_slot_number,
-      order_number: getParkingSlot().order_number,
-    };
-
-    let parking_space_id = getParkingSlot().parking_space_id;
-    const parkingSpaceRef = doc(db, "parking_space", parking_space_id);
-    await updateDoc(parkingSpaceRef, {
-      no_of_taken_slots: getParkingSlot().parking_slot_number,
-    });
-
-    const docRef = await addDoc(collection(db, "booked_space"), booking_data);
-    generateQRCode(booking_data);
-
-    submitBookingBtn.innerHTML = "Submitted";
-    submitBookingBtn.style.backgroundColor = "green";
-    showToast({
-      type: "success",
-      text: `You have successfully booked a slot in ${parkingSpace.value}`,
-    });
-    setTimeout(() => {
-      submitBookingBtn.style.backgroundColor = "#fe4801";
-      submitBookingBtn.innerHTML = "Submit";
-      submitBookingBtn.disabled = false;
-      resetData();
-    }, 3000);
+  try {
+    
+    if (dateIsValid()) {
+      submitBookingBtn.innerHTML = "Submitting...";
+      submitBookingBtn.disabled = true;
+  
+      booking_data = {
+        selected_parking_space: parkingSpace.value,
+        customer_name: customerName.value,
+        customer_phone_number: customerPhoneNumber.value,
+        parking_end_date: parkingEndDate.value,
+        parking_start_date: parkingStartDate.value,
+        parking_time: parkingTime.value,
+        parking_slot_number: getParkingSlot().parking_slot_number,
+        order_number: getParkingSlot().order_number,
+      };
+  
+      let parking_space_id = getParkingSlot().parking_space_id;
+  
+      const parkingSpaceRef = doc(db, "parking_space", parking_space_id);
+      await updateDoc(parkingSpaceRef, {
+        no_of_taken_slots: getParkingSlot().parking_slot_number,
+      });
+  
+      const docRef = await addDoc(collection(db, "booked_space"), booking_data);
+      generateQRCode(booking_data);
+  
+      submitBookingBtn.innerHTML = "Submitted";
+      submitBookingBtn.style.backgroundColor = "green";
+      showToast({
+        type: "success",
+        text: `You have successfully booked a slot in ${parkingSpace.value}`,
+      });
+      setTimeout(() => {
+        submitBookingBtn.style.backgroundColor = "#fe4801";
+        submitBookingBtn.innerHTML = "Submit";
+        submitBookingBtn.disabled = false;
+        resetData();
+      }, 3000);
+    }
+  } catch (error) {
+    showToast({type: "error", message: error.message})
   }
 };
 
