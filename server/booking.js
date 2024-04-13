@@ -64,9 +64,13 @@ const getAvailableParkingSpace = async () => {
 getAvailableParkingSpace();
 
 const dateIsValid = () => {
-    console.log(parkingStartDate.value)
+  console.log(parkingStartDate.value);
   if (new Date() - new Date(parkingStartDate.value) > 0) {
-    console.log("Start date must be greater than or equal to the current date");
+    if (
+      new Date().toDateString() ===
+      new Date(parkingStartDate.value).toDateString()
+    )
+      return true;
     showToast({
       type: "error",
       text: "Start date must be greater than or equal to the current date",
@@ -103,13 +107,13 @@ const getParkingSlot = () => {
       if (name.includes(" ")) {
         let splitted_name = name.split(" ");
         order_number =
-          splitted_name[0].substr(0,2).toUpperCase() +
-          splitted_name[1].substr(0,3).toUpperCase() + "-" +
+          splitted_name[0].substr(0, 2).toUpperCase() +
+          splitted_name[1].substr(0, 3).toUpperCase() +
+          "-" +
           addLeadingZeros(parking_slot_number, 2);
       } else {
-        order_number =
-          name.substr(0,3).toUpperCase() + "-"
-          addLeadingZeros(parking_slot_number, 2);
+        order_number = name.substr(0, 3).toUpperCase() + "-";
+        addLeadingZeros(parking_slot_number, 2);
       }
 
       parking_space_id = id;
@@ -119,24 +123,24 @@ const getParkingSlot = () => {
 };
 
 const generateBookingTable = (data) => {
-  let table = document.createElement('table');
+  let table = document.createElement("table");
   let booking_titles = Object.keys(data);
-  let booking_values = booking_titles.map(key => data[key]);
+  let booking_values = booking_titles.map((key) => data[key]);
 
-  let tableHead = document.createElement('thead');
-  let tableBody = document.createElement('tbody');
-  let tableRowHead = document.createElement('tr');
-  let tableRowBody = document.createElement('tr');
-  
+  let tableHead = document.createElement("thead");
+  let tableBody = document.createElement("tbody");
+  let tableRowHead = document.createElement("tr");
+  let tableRowBody = document.createElement("tr");
+
   booking_titles.map((title) => {
-    let th = document.createElement('th');
+    let th = document.createElement("th");
     th.innerHTML = title;
     tableRowHead.appendChild(th);
   });
   tableHead.appendChild(tableRowHead);
 
   booking_values.map((value) => {
-    let td = document.createElement('td');
+    let td = document.createElement("td");
     td.innerHTML = value;
     tableRowBody.appendChild(td);
   });
@@ -144,9 +148,9 @@ const generateBookingTable = (data) => {
 
   table.appendChild(tableHead);
   table.appendChild(tableBody);
-  
+
   // qrcodeContainer.appendChild(table);
-}
+};
 
 const generateQRCode = async (data) => {
   // Create QR code image element
@@ -180,11 +184,10 @@ function extFn(url) {
 
 const uploadBooking = async () => {
   try {
-    
     if (dateIsValid()) {
       submitBookingBtn.innerHTML = "Submitting...";
       submitBookingBtn.disabled = true;
-  
+
       booking_data = {
         selected_parking_space: parkingSpace.value,
         customer_name: customerName.value,
@@ -195,17 +198,17 @@ const uploadBooking = async () => {
         parking_slot_number: getParkingSlot().parking_slot_number,
         order_number: getParkingSlot().order_number,
       };
-  
+
       let parking_space_id = getParkingSlot().parking_space_id;
-  
+
       const parkingSpaceRef = doc(db, "parking_space", parking_space_id);
       await updateDoc(parkingSpaceRef, {
         no_of_taken_slots: getParkingSlot().parking_slot_number,
       });
-  
+
       const docRef = await addDoc(collection(db, "booked_space"), booking_data);
       generateQRCode(booking_data);
-  
+
       submitBookingBtn.innerHTML = "Submitted";
       submitBookingBtn.style.backgroundColor = "green";
       showToast({
@@ -220,7 +223,7 @@ const uploadBooking = async () => {
       }, 3000);
     }
   } catch (error) {
-    showToast({type: "error", message: error.message})
+    showToast({ type: "error", message: error.message });
   }
 };
 
