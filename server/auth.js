@@ -6,6 +6,7 @@ const form = document.getElementById("admin_form");
 const signoutBtn = document.getElementById("signout_btn");
 const toast = document.getElementById("toast");
 const loginBtn = document.getElementById("login_btn");
+import showToast from "../js/toast.js"
 
 const auth = getAuth(app);
 let errorText;
@@ -33,6 +34,9 @@ const loginAdmin = (e) =>{
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        loginBtn.innerHTML = "Login";
+        loginBtn.disabled = false;
+      showToast({type: "error", text: errorCode})
         // ..
       });
 }
@@ -41,8 +45,8 @@ const loginAdmin = (e) =>{
 
 const logoutAdmin = (e) => {
   signOut(auth).then(() => {
-    window.location.href = "../index.html";
     localStorage.removeItem("user");
+    window.location.href = "/index.html";
   })
 }
 

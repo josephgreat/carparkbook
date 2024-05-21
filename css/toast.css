@@ -2,7 +2,7 @@
     position: fixed;
     top: 1rem;
     right: 1rem;
-    z-index: 100;
+    z-index: 100000;
     display: flex;
     align-items: center;
     gap: .5rem;
