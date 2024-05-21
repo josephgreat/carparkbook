@@ -10,12 +10,13 @@
     border-radius: 3rem;
     padding: .5rem 1rem;
     font-weight: bold;
-    opacity: 0;
+    display: none;
     transition: opacity .1s ease;
 }
 
 .toast_container.show{
    opacity: 1;
+   display: flex;
 }
 .toast_container.success{
     background-color: rgb(50, 150, 50);
