@@ -41,7 +41,7 @@ const loginAdmin = (e) =>{
 
 const logoutAdmin = (e) => {
   signOut(auth).then(() => {
-    window.location.pathname = "../index.html";
+    window.location.href = "../index.html";
     localStorage.removeItem("user");
   })
 }
