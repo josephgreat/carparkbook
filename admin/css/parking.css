@@ -23,18 +23,46 @@ tbody#parking_space_table{
     vertical-align: middle;
 }
 
+.parking_space_row .icons{
+    display: flex;
+    gap: 5px
+}
 .delete_icon{
     color: rgb(150, 50, 50);
+    background-color: rgb(250,250,250);
+
     /* background-color: rgb(200,200,200); */
     padding: .3rem;
     border-radius: 50%;
     cursor: pointer;
-    transition: color, transform .1s ease;
+    transition: all .3s linear;
+    font-weight: bold;
+}
+.edit_icon{
+    color: rgb(50, 150, 50);
+    background-color: rgb(250,250,250);
+    padding: .3rem;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s linear;
 }
 
 .delete_icon:hover{
     color: rgb(250, 20, 20);
     transform: scale(1.15);
+    background-color: transparent;
+
+    /* color: rgb(200,200,200); */
+}
+.edit_icon:hover{
+    color: rgb(20, 250, 20);
+    transform: scale(1.15);
+    background-color: transparent;
+
     /* color: rgb(200,200,200); */
 }
 

@@ -42,6 +42,7 @@ const deleteParkingSpace = async (index) => {
     await deleteDoc(doc(db, "parking_space", all_parking_space[index].id));
     let deletedSpace = all_parking_space.splice(index, 1);
     updateParkingSpaceUI();
+
     showToast({
       type: "success",
       text: `${deletedSpace[0].data.name} parking space has been deleted`,
@@ -55,8 +56,6 @@ const deleteParkingSpace = async (index) => {
 const editParkingSpace = (index) => {
   const id = encodeURIComponent(all_parking_space[index].id);
   location.href = `/admin/edit-parking.html?id=${id}`;
-
-  
 };
 
 const updateParkingSpaceUI = () => {
@@ -77,7 +76,8 @@ const updateParkingSpaceUI = () => {
           <td class="col-3">${data.no_of_slots}</td>
           <td class="col-3">${slot_difference}</td>
           <td class="col-3">${slot_difference > 0 ? "Yes" : "No"}</td>
-          <td class="col-1">
+          <td class="col-1 icons">
+            <i class="far fa-edit tm-product-edit-icon edit_icon"></i>
             <i class="far fa-trash-alt tm-product-delete-icon delete_icon"></i>
           </td>
         </tr>`
@@ -90,9 +90,9 @@ const updateParkingSpaceUI = () => {
       deleteIcon.addEventListener("click", () => deleteParkingSpace(index));
     });
 
-    const parkingSpaceRows = document.querySelectorAll(".parking_space_row");
-    parkingSpaceRows.forEach((parkingSpaceRow, index) =>
-      parkingSpaceRow.addEventListener("click", () => editParkingSpace(index))
+    const editIcons = document.querySelectorAll(".edit_icon");
+    editIcons.forEach((editIcon, index) =>
+      editIcon.addEventListener("click", () => editParkingSpace(index))
     );
   }
 
@@ -117,6 +117,5 @@ const updateDashboardUI = () => {
   });
   loadingNode.style.display = "none";
 };
-
 
 getAllParkingSpace();
